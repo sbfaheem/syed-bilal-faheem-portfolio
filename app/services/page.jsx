@@ -1,10 +1,12 @@
-import { redirect } from 'next/navigation';
+import { readPublicPageBody } from '../../lib/html-page';
 
 export const metadata = {
-  title: 'Services — Syed Bilal Faheem',
-  description: 'Software, data, AI and video editing services by Syed Bilal Faheem.'
+  title: 'Video Editing Services — Syed Bilal Faheem',
+  description: 'YouTube editing, short-form reels, color grading, sound design and full channel management services by Syed Bilal Faheem.'
 };
 
+const servicesMarkup = readPublicPageBody('services-page.html');
+
 export default function ServicesPage() {
-  redirect('/#services');
+  return <div className="services-page" dangerouslySetInnerHTML={{ __html: servicesMarkup }} />;
 }
