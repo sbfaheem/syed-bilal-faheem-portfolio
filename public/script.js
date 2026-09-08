@@ -19,6 +19,7 @@ menuButton?.addEventListener('click', () => {
 const navLinks = [...document.querySelectorAll('.nav a')];
 const cleanPath = (path) => path.replace(/\/+$/, '') || '/';
 const currentPath = cleanPath(window.location.pathname);
+const homeSectionIds = ['about', 'expertise', 'projects', 'services', 'experience', 'credentials', 'achievements'];
 const activateNavLink = (activeLink) => {
   navLinks.forEach((link) => {
     const isActive = link === activeLink;
@@ -28,44 +29,58 @@ const activateNavLink = (activeLink) => {
   });
 };
 
-const sectionNavLinks = [];
+const closeMobileNav = () => {
+  nav?.classList.remove('open');
+  menuButton?.classList.remove('open');
+  menuButton?.setAttribute('aria-expanded', 'false');
+  menuButton?.setAttribute('aria-label', 'Open navigation');
+};
+const getHashTarget = (hash) => {
+  if (!hash) return null;
+  const id = decodeURIComponent(hash.replace(/^#/, ''));
+  return document.getElementById(id);
+};
+const scrollToHash = (target, hash, replace = true) => {
+  target?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+  if (replace && hash) window.history.replaceState(null, '', hash);
+};
+
 navLinks.forEach((link) => {
   const url = new URL(link.getAttribute('href'), window.location.href);
-  if (cleanPath(url.pathname) === currentPath && url.hash) {
-    const target = document.querySelector(url.hash);
-    if (target) sectionNavLinks.push({ link, target });
-  }
-
   link.addEventListener('click', (event) => {
     const destination = new URL(link.getAttribute('href'), window.location.href);
-    const target = cleanPath(destination.pathname) === currentPath && destination.hash ? document.querySelector(destination.hash) : null;
+    const isHomeDestination = cleanPath(destination.pathname) === '/' && destination.hash;
+    const target = currentPath === '/' && isHomeDestination ? getHashTarget(destination.hash) : null;
     if (target) {
       event.preventDefault();
-      target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-      window.history.replaceState(null, '', destination.hash);
+      scrollToHash(target, destination.hash);
       activateNavLink(link);
     }
-    nav?.classList.remove('open');
-    menuButton?.classList.remove('open');
-    menuButton?.setAttribute('aria-expanded', 'false');
-    menuButton?.setAttribute('aria-label', 'Open navigation');
+    closeMobileNav();
   });
 });
 
-const routeLink = navLinks.find((link) => {
-  const url = new URL(link.getAttribute('href'), window.location.href);
-  return cleanPath(url.pathname) === currentPath && !url.hash;
-});
-if (routeLink) activateNavLink(routeLink);
+const routeLink = navLinks.find((link) => cleanPath(new URL(link.getAttribute('href'), window.location.href).pathname) === currentPath && !new URL(link.getAttribute('href'), window.location.href).hash);
+if (currentPath !== '/' && routeLink) activateNavLink(routeLink);
 
-if (sectionNavLinks.length) {
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    const match = sectionNavLinks.find(({ target }) => target === visible.target);
-    if (match) activateNavLink(match.link);
-  }, { rootMargin: '-22% 0px -58% 0px', threshold: [0, .12, .3, .55] });
-  sectionNavLinks.forEach(({ target }) => sectionObserver.observe(target));
+if (currentPath === '/') {
+  const sectionNavLinks = homeSectionIds.map((id) => ({ id, target: document.getElementById(id), link: navLinks.find((item) => new URL(item.getAttribute('href'), window.location.href).hash === `#${id}`) })).filter((item) => item.target && item.link);
+  const homeLink = navLinks.find((link) => cleanPath(new URL(link.getAttribute('href'), window.location.href).pathname) === '/' && !new URL(link.getAttribute('href'), window.location.href).hash);
+  let spyFrame = 0;
+  const updateScrollSpy = () => {
+    spyFrame = 0;
+    const marker = window.scrollY + (header?.offsetHeight || 72) + 140;
+    let active = null;
+    sectionNavLinks.forEach((item) => { if (item.target.offsetTop <= marker) active = item; });
+    activateNavLink(active?.link || homeLink);
+  };
+  const queueScrollSpy = () => { if (!spyFrame) spyFrame = requestAnimationFrame(updateScrollSpy); };
+  window.addEventListener('scroll', queueScrollSpy, { passive: true });
+  window.addEventListener('resize', queueScrollSpy, { passive: true });
+  updateScrollSpy();
+  if (window.location.hash) {
+    window.setTimeout(() => scrollToHash(getHashTarget(window.location.hash), window.location.hash, false), 80);
+  }
 }
 
 const counters = document.querySelectorAll('.counter');
