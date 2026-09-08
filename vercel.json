@@ -1,11 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/portfolio", "destination": "/portfolio/index.html" },
-    { "source": "/services", "destination": "/services/index.html" },
-    { "source": "/awards", "destination": "/awards/index.html" },
-    { "source": "/contact", "destination": "/contact/index.html" }
-  ]
+  "framework": "nextjs"
 }

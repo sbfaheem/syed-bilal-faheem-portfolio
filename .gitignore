@@ -1,0 +1,8 @@
+node_modules/
+.next/
+*.zip
+*.tgz
+.env
+.env.local
+.vercel/
+.DS_Store

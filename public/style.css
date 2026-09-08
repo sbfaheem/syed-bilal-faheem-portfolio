@@ -193,7 +193,13 @@ p { color: var(--muted); }
 .philosophy-grid { margin-top:70px; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 .philosophy-grid article { min-height:210px; padding:24px 22px; border-right:1px solid var(--line); }
 .philosophy-grid article:last-child { border-right:0; }
-.philosophy-grid span { color:var(--muted-2); font-size:9px; }
+.philosophy-grid span {
+  color:var(--muted-2);
+  font-size:clamp(.8125rem,.25vw + .75rem,.9375rem);
+  line-height:1.5;
+  letter-spacing:.08em;
+  font-weight:800;
+}
 .philosophy-grid h3 { margin:44px 0 8px; font-size:1.25rem; }
 .philosophy-grid p { margin-bottom:0; font-size:12px; }
 

@@ -1,0 +1,23 @@
+{
+  "name": "syed-bilal-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:html": "node scripts/validate-site.mjs",
+    "check": "npm run lint:html && npm run build"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.0.0",
+    "framer-motion": "^13.1.1",
+    "gsap": "^3.15.0",
+    "next": "15.5.9",
+    "postgres": "^3.4.7",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {}
+}

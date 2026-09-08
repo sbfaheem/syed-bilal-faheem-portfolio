@@ -177,7 +177,7 @@
   };
 
   try {
-    const response = await fetch('/site-content.json', { cache: 'no-store' });
+    const response = await fetch('/api/site-content', { cache: 'no-store' });
     if (!response.ok) return;
     const cms = await response.json();
     document.documentElement.dataset.theme = cms.settings?.theme || 'charcoal-orange';
