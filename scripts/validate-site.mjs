@@ -37,7 +37,11 @@ for (const fallback of ['>6+</strong>', '>8+</strong>', '>4+</strong>', '<!-- HO
   if (!home.includes(fallback)) throw new Error(`Homepage is missing reliable first-load content: ${fallback}`);
 }
 if (/Project Showcase|Explore the Portfolio|id="project-slider"/.test(home)) throw new Error('Duplicate homepage showcase must be removed.');
-if (!home.includes('Selected projects spanning enterprise engineering, public-sector digital delivery and independent AI.')) throw new Error('Homepage flagship introduction is incorrect.');
+if (!home.includes('Four flagship projects spanning enterprise engineering, public-sector digital delivery and an independent AI product.')) throw new Error('Homepage flagship introduction is incorrect.');
+for (const anchor of ['href="#about"', 'href="#expertise"', 'href="#projects"', 'href="#services"', 'href="#experience"', 'href="#credentials"', 'href="#achievements"']) {
+  if (!home.includes(anchor)) throw new Error(`Homepage navigation is missing ${anchor}.`);
+}
+if (!home.includes('id="services"') || !home.includes('id="achievements"')) throw new Error('Homepage is missing Services or Awards sections.');
 if (!home.includes('href="/portfolio#media-work">View Full Portfolio')) throw new Error('View Full Portfolio link must remain unchanged.');
 if (home.includes('Project highlights are loading from the portfolio.')) {
   throw new Error('Homepage still exposes the project-loading placeholder.');
@@ -88,7 +92,7 @@ for (const [key, category] of Object.entries({ software: 'Software Projects', da
 }
 
 const admin = await readFile(path.join(root, 'app/admin/admin-panel.jsx'), 'utf8');
-for (const capability of ['Page Text', 'Services', 'Awards', 'Portfolio', 'Contact & Social', 'Images', 'Themes', 'Security', 'Admin@123']) {
+for (const capability of ['Page Text', 'Services', 'Awards', 'Portfolio', 'Contact & Social', 'Images', 'Themes', 'Security']) {
   if (!admin.includes(capability)) throw new Error(`Admin Panel is missing ${capability}`);
 }
 
