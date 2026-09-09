@@ -6,6 +6,7 @@
     return element;
   };
   const safeLink = (value) => {
+    if (typeof value !== 'string' || !value.trim()) return '';
     try {
       const url = new URL(value, window.location.origin);
       return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
@@ -192,13 +193,21 @@
     document.querySelectorAll('[data-contact-value="email"]').forEach((element) => { element.textContent = contact.email || ''; });
     document.querySelectorAll('[data-contact-value="whatsapp"]').forEach((element) => { element.textContent = contact.whatsapp || ''; });
     const emailSubject = encodeURIComponent('Portfolio project enquiry');
-    document.querySelectorAll('[data-contact-link="email"]').forEach((element) => { element.href = `mailto:${contact.email || ''}?subject=${emailSubject}`; });
+    const emailRecipient = encodeURIComponent(contact.email || 'bilalfaheem47@gmail.com');
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailRecipient}&su=${emailSubject}`;
+    document.querySelectorAll('[data-contact-link="email"]').forEach((element) => {
+      element.href = gmailComposeUrl;
+      element.target = '_blank';
+      element.rel = 'noopener noreferrer';
+      element.setAttribute('aria-label', `Email ${contact.email || 'bilalfaheem47@gmail.com'}`);
+    });
     const whatsappDigits = String(contact.whatsapp || '').replace(/\D/g, '');
     const whatsappMessage = encodeURIComponent('Hello Bilal, I visited your portfolio and would like to discuss a project.');
     document.querySelectorAll('[data-contact-link="whatsapp"]').forEach((element) => { element.href = `https://wa.me/${whatsappDigits}?text=${whatsappMessage}`; });
     const contactForm = document.querySelector('#project-contact-form'); if (contactForm && contact.email) contactForm.dataset.recipient = contact.email;
     document.querySelectorAll('[data-social]').forEach((element) => {
-      const url = safeLink(contact[element.dataset.social]);
+      const fallbackSocials = { linkedin: 'https://www.linkedin.com/in/syed-bilal-faheem-7299a415/' };
+      const url = safeLink(contact[element.dataset.social] || fallbackSocials[element.dataset.social]);
       element.href = url || '#'; element.setAttribute('aria-disabled', url ? 'false' : 'true');
       if (url) { element.target = '_blank'; element.rel = 'noreferrer'; }
       element.addEventListener('click', (event) => { if (!url) event.preventDefault(); });
