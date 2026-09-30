@@ -1,72 +1,10 @@
-const header = document.querySelector('.site-header');
-const menuButton = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const updateHeader = () => {
-  header?.classList.toggle('scrolled', window.scrollY > 18);
-};
-updateHeader();
-window.addEventListener('scroll', updateHeader, { passive: true });
-
-menuButton?.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('open');
-  menuButton.classList.toggle('open', isOpen);
-  menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-});
-
-const navLinks = [...document.querySelectorAll('.nav a')];
-const cleanPath = (path) => path.replace(/\/+$/, '') || '/';
-const currentPath = cleanPath(window.location.pathname);
-const activateNavLink = (activeLink) => {
-  navLinks.forEach((link) => {
-    const isActive = link === activeLink;
-    link.classList.toggle('active', isActive);
-    if (isActive) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
-  });
-};
-
-const sectionNavLinks = [];
-navLinks.forEach((link) => {
-  const url = new URL(link.getAttribute('href'), window.location.href);
-  if (cleanPath(url.pathname) === currentPath && url.hash) {
-    const target = document.querySelector(url.hash);
-    if (target) sectionNavLinks.push({ link, target });
-  }
-
-  link.addEventListener('click', (event) => {
-    const destination = new URL(link.getAttribute('href'), window.location.href);
-    const target = cleanPath(destination.pathname) === currentPath && destination.hash ? document.querySelector(destination.hash) : null;
-    if (target) {
-      event.preventDefault();
-      target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-      window.history.replaceState(null, '', destination.hash);
-      activateNavLink(link);
-    }
-    nav?.classList.remove('open');
-    menuButton?.classList.remove('open');
-    menuButton?.setAttribute('aria-expanded', 'false');
-    menuButton?.setAttribute('aria-label', 'Open navigation');
-  });
-});
-
-const routeLink = navLinks.find((link) => {
-  const url = new URL(link.getAttribute('href'), window.location.href);
-  return cleanPath(url.pathname) === currentPath && !url.hash;
-});
-if (routeLink) activateNavLink(routeLink);
-
-if (sectionNavLinks.length) {
-  const sectionObserver = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (!visible) return;
-    const match = sectionNavLinks.find(({ target }) => target === visible.target);
-    if (match) activateNavLink(match.link);
-  }, { rootMargin: '-22% 0px -58% 0px', threshold: [0, .12, .3, .55] });
-  sectionNavLinks.forEach(({ target }) => sectionObserver.observe(target));
-}
+// Also initialize when a public HTML page is opened directly. The controller
+// shares a document-level instance with the Next.js component, so it binds once.
+import('/scroll-effects.js').then(({ initPortfolioScroll }) => {
+  initPortfolioScroll();
+}).catch((error) => console.warn('Scroll enhancements unavailable; native links remain active.', error));
 
 const counters = document.querySelectorAll('.counter');
 const showCounterValue = (el) => {

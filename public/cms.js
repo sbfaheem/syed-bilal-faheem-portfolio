@@ -14,11 +14,9 @@
   };
 
   const animateIn = (element, index = 0) => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    element.animate(
-      [{ opacity: 0, transform: 'translateY(20px)' }, { opacity: 1, transform: 'translateY(0)' }],
-      { duration: 520, delay: Math.min(index * 70, 280), easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both' }
-    );
+    // The shared controller observes these after portfolio:cms-ready. Avoid
+    // running a second animation on top of scrolling/hover transforms.
+    element.setAttribute('data-scroll-reveal', '');
   };
 
   const fontSectionSelectors = {
