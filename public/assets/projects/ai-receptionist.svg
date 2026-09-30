@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <title>AI Receptionist — 24/7 patient intake in English and Arabic</title>
+  <desc>Portfolio cover illustration with an orange and cyan voice waveform on a dark background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#111521"/><stop offset="1" stop-color="#08080C"/></linearGradient>
+    <linearGradient id="wave" x1="890" y1="400" x2="1450" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#F97316"/><stop offset=".5" stop-color="#FFC995"/><stop offset="1" stop-color="#38BDF8"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#38BDF8" stop-opacity=".12"/><stop offset="1" stop-color="#38BDF8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="32" y="32" width="1536" height="836" rx="36" stroke="#FFFFFF" stroke-opacity=".09"/>
+  <circle cx="1180" cy="440" r="360" fill="url(#halo)"/>
+  <path d="M840 180H1470M840 720H1470" stroke="#FFFFFF" stroke-opacity=".08"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="100" y="98" width="288" height="54" rx="27" fill="#F97316" fill-opacity=".1" stroke="#F97316" stroke-opacity=".3"/>
+    <circle cx="128" cy="125" r="6" fill="#F97316"/>
+    <text x="149" y="133" fill="#FFAD70" font-size="23" font-weight="700" letter-spacing="2">VOICE AI · DENTAL</text>
+    <text x="96" y="332" fill="#FFFFFF" font-size="98" font-weight="700" letter-spacing="-4">AI Receptionist</text>
+    <text x="100" y="413" fill="#94A3B8" font-size="35">Patient intake.</text>
+    <text x="100" y="466" fill="#94A3B8" font-size="35">Consultation booking.</text>
+    <text x="100" y="610" fill="#F97316" font-size="100" font-weight="700" letter-spacing="-3">24/7</text>
+    <text x="102" y="658" fill="#94A3B8" font-size="22" letter-spacing="3">ENGLISH + ARABIC</text>
+    <text x="100" y="795" fill="#E2E8F0" font-size="23" font-weight="700">SYED BILAL</text>
+    <text x="1470" y="795" text-anchor="end" fill="#94A3B8" font-size="21" letter-spacing="2">AI &amp; WEB PROJECTS</text>
+    <text x="1170" y="265" text-anchor="middle" fill="#94A3B8" font-size="20" letter-spacing="4">BUILT TO KEEP THE CONVERSATION GOING</text>
+  </g>
+  <g stroke="url(#wave)" stroke-width="19" stroke-linecap="round">
+    <path d="M900 426V474M938 404V496M976 375V525M1014 403V497M1052 350V550M1090 320V580M1128 368V532M1166 294V606M1204 348V552M1242 380V520M1280 326V574M1318 364V536M1356 400V500M1394 418V482M1432 432V468"/>
+  </g>
+  <g fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="22">
+    <text x="900" y="683">INQUIRY</text><text x="1112" y="683">QUALIFY</text><text x="1314" y="683">BOOKING</text>
+  </g>
+  <path d="M1020 675H1080M1230 675H1290" stroke="#38BDF8" stroke-opacity=".5" stroke-width="2"/>
+</svg>
