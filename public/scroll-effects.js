@@ -1,3 +1,4 @@
+import { initNextGeneration } from './next-generation.js';
 // Shared by Next.js and the standalone HTML fallback. No wheel/touch hijacking,
 // scroll-driven transforms, permanent animation layers, or animation libraries.
 const controllerKey = '__portfolioScrollController';
@@ -42,6 +43,7 @@ export function initPortfolioScroll() {
     style.textContent = styles;
     document.head.append(style);
   }
+  const destroyNextGeneration = initNextGeneration(header);
   const root = document.documentElement;
   root.classList.add('portfolio-scroll-ready');
   const nav = header.querySelector('.nav');
@@ -243,6 +245,7 @@ export function initPortfolioScroll() {
   const destroy = () => {
     if (destroyed) return;
     destroyed = true;
+    destroyNextGeneration();
     removers.forEach((remove) => remove());
     cancelAnimationFrame(frame);
     clearTimeout(initialTimer);
