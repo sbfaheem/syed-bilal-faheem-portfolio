@@ -37,7 +37,7 @@ for (const fallback of ['>6+</strong>', '>8+</strong>', '>4+</strong>', '<!-- HO
   if (!home.includes(fallback)) throw new Error(`Homepage is missing reliable first-load content: ${fallback}`);
 }
 if (/Project Showcase|Explore the Portfolio|id="project-slider"/.test(home)) throw new Error('Duplicate homepage showcase must be removed.');
-if (!home.includes('Selected projects spanning enterprise engineering, public-sector digital delivery and independent AI.')) throw new Error('Homepage flagship introduction is incorrect.');
+if (!home.includes('Four flagship projects spanning enterprise engineering, public-sector digital delivery and an independent AI product.')) throw new Error('Homepage flagship introduction is incorrect.');
 if (!home.includes('href="/portfolio#media-work">View Full Portfolio')) throw new Error('View Full Portfolio link must remain unchanged.');
 if (home.includes('Project highlights are loading from the portfolio.')) {
   throw new Error('Homepage still exposes the project-loading placeholder.');
@@ -79,7 +79,7 @@ const contact = await readFile(path.join(root, 'public/contact-page.html'), 'utf
 for (const detail of ['bilalfaheem47@gmail.com', '+92 336 2607836', 'Contact Number', 'Project Category', 'Project Requirements &amp; Quote Request']) {
   if (!contact.includes(detail)) throw new Error(`Contact page is missing ${detail}`);
 }
-if (!contact.includes('mailto:bilalfaheem47@gmail.com?subject=Portfolio%20project%20enquiry')) throw new Error('Email card must open a prepared email to the portfolio address.');
+if (!contact.includes('https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=bilalfaheem47%40gmail.com&amp;su=Portfolio%20project%20enquiry')) throw new Error('Email card must open a prepared email to the portfolio address.');
 if (!contact.includes('https://wa.me/923362607836?text=')) throw new Error('WhatsApp card must open a prepared chat to the portfolio number.');
 
 for (const [key, category] of Object.entries({ software: 'Software Projects', data: 'Data Projects', ai: 'AI Solution Driven Projects', video: 'Video Editing Services' })) {

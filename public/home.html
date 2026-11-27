@@ -63,6 +63,7 @@
           <div class="hero-actions reveal">
             <a class="button button-primary cinematic-cta" href="#projects">View My Work <span aria-hidden="true">↗</span></a>
             <a class="button button-ghost" href="/contact">Let’s Work Together</a>
+            <a class="next-demo-link" href="#ai-experience"><span aria-hidden="true">▷</span> Try the AI receptionist demo</a>
           </div>
 
           <div class="credibility-strip reveal" aria-label="Professional highlights">
@@ -74,6 +75,7 @@
         </div>
 
         <div class="hero-portrait-wrap reveal">
+          <div class="next-hero-grid" aria-hidden="true"></div>
           <div class="portrait-orbit orbit-a" aria-hidden="true"></div>
           <div class="portrait-orbit orbit-b" aria-hidden="true"></div>
           <figure class="portrait-card">
@@ -228,10 +230,42 @@
         <p>Every engagement starts with a focused conversation and a quote based on your requirements, deliverables and timeline.</p>
       </div>
       <div class="scope-grid home-scope-grid">
-        <article class="scope-card reveal"><span class="kicker">01 / Software</span><h3>Software Projects</h3><p>Reliable websites, CMS platforms and custom applications built around your workflow.</p><a class="button button-primary" href="/contact?category=software#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
-        <article class="scope-card reveal"><span class="kicker">02 / Data</span><h3>Data Projects</h3><p>Power BI dashboards, reporting and analytics that turn data into clearer decisions.</p><a class="button button-primary" href="/contact?category=data#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
-        <article class="scope-card reveal"><span class="kicker">03 / AI</span><h3>AI Solution Driven Projects</h3><p>Practical AI tools, integrations and automation that help teams reduce repetitive work.</p><a class="button button-primary" href="/contact?category=ai#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
-        <article class="scope-card reveal"><span class="kicker">04 / Media</span><h3>Video Editing Services</h3><p>Story-led videos, social edits and channel support designed to connect with your audience.</p><a class="button button-primary" href="/contact?category=video#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
+        <article class="scope-card reveal"><span class="kicker">01 / Software</span><h3>Software Projects</h3><p>Reliable websites, CMS platforms and custom applications built around your workflow.</p><details class="next-service-details"><summary>Full-stack SaaS & CMS</summary><p>Explore custom web applications, content management and integrated business systems.</p></details><a class="button button-primary" href="/contact?category=software#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
+        <article class="scope-card reveal"><span class="kicker">02 / Data</span><h3>Data Projects</h3><p>Power BI dashboards, reporting and analytics that turn data into clearer decisions.</p><details class="next-service-details"><summary>Interactive reporting</summary><p>Explore KPI dashboards, financial reporting and operational intelligence.</p></details><a class="button button-primary" href="/contact?category=data#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
+        <article class="scope-card reveal"><span class="kicker">03 / AI</span><h3>AI Solution Driven Projects</h3><p>Practical AI tools, integrations and automation that help teams reduce repetitive work.</p><details class="next-service-details"><summary>AI receptionists & automation</summary><p>Explore appointment workflows, AI agents, integrations and repetitive-task automation.</p></details><a class="button button-primary" href="/contact?category=ai#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
+        <article class="scope-card reveal"><span class="kicker">04 / Media</span><h3>Video Editing Services</h3><p>Story-led videos, social edits and channel support designed to connect with your audience.</p><details class="next-service-details"><summary>Content production</summary><p>Explore long-form editing, short-form videos and content delivery workflows.</p></details><a class="button button-primary" href="/contact?category=video#project-form">Contact for a Quote <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>
+
+    <section class="section-shell next-experience" id="ai-experience" aria-labelledby="next-demo-title">
+      <div class="section-index reveal"><span>LAB</span> Interactive Experience</div>
+      <div class="next-lab">
+        <div class="next-lab-copy reveal">
+          <p class="kicker">AI · SAAS · CUSTOM WORKFLOWS</p>
+          <h2 id="next-demo-title">Never let an enquiry <span class="headline-blue">go unanswered.</span></h2>
+          <p>Explore how an AI-powered receptionist could qualify enquiries and guide customers towards an appointment, even outside office hours.</p>
+          <div class="next-workflow" aria-label="Appointment workflow">
+            <div data-flow="0"><span>01</span> Enquiry received</div>
+            <div data-flow="1"><span>02</span> Intent understood</div>
+            <div data-flow="2"><span>03</span> Time selected</div>
+            <div data-flow="3"><span>04</span> Demo confirmation</div>
+          </div>
+          <a class="button button-primary" href="/contact?category=ai#project-form">Discuss your automation <span aria-hidden="true">↗</span></a>
+          <p class="next-disclaimer">A local, scripted demonstration. No real AI call, calendar integration, personal information collection or appointment is involved.</p>
+        </div>
+        <div class="next-console reveal" data-receptionist-demo>
+          <div class="next-console-head"><div class="next-avatar" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M5 20h4l4-10 5 20 5-17 5 12 4-5h3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><strong>AI Appointment Receptionist</strong><small><i aria-hidden="true"></i> Interactive simulation</small></div><span class="next-console-tag">DEMO</span></div>
+          <div class="next-industry" role="group" aria-label="Choose an industry">
+            <button type="button" data-industry="healthcare" aria-pressed="true">Hospital</button>
+            <button type="button" data-industry="dental" aria-pressed="false">Dental</button>
+            <button type="button" data-industry="aesthetic" aria-pressed="false">Aesthetics</button>
+            <button type="button" data-industry="roofing" aria-pressed="false">Roofing</button>
+          </div>
+          <div class="next-chat" role="log" aria-live="polite" aria-relevant="additions" aria-label="Simulated receptionist conversation"><p class="next-msg next-msg-agent">Hello! I’m your demo receptionist. Choose an industry to explore a sample booking.</p></div>
+          <div class="next-choices" role="group" aria-label="Conversation options"></div>
+          <div class="next-console-foot"><span data-demo-state>Ready to explore</span><button type="button" data-demo-reset>Restart demo ↻</button></div>
+          <noscript><p>Enable JavaScript to interact with this demonstration.</p></noscript>
+        </div>
       </div>
     </section>
 
